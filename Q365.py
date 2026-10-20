@@ -4,7 +4,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from groq import Groq
 from supabase import Client, create_client
-
+load_dotenv()
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
