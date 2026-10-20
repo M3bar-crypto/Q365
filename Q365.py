@@ -14,7 +14,6 @@ SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 groq_client = Groq(api_key=GROQ_API_KEY)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-
 def generate_daily_question():
     today_date = datetime.now().strftime("%Y-%m-%d")
     print(f"🔄 جاري بدء عملية التوليد لتاريخ: {today_date}")
@@ -74,7 +73,6 @@ def generate_daily_question():
 
     except Exception as e:
         print(f"❌ حدث خطأ أثناء التوليد أو الحفظ: {e}")
-
 
 if __name__ == "__main__":
     generate_daily_question()
