@@ -5,8 +5,12 @@ from dotenv import load_dotenv
 from groq import Groq
 from supabase import Client, create_client
 
-load_dotenv()
-
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+    
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
