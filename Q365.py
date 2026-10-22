@@ -2,15 +2,21 @@ import json
 import os
 from datetime import datetime
 from dotenv import load_dotenv
-from groq import Groq
+from openai import OpenAI
 from supabase import Client, create_client
+
 load_dotenv()
+
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 
-groq_client = Groq(api_key=GROQ_API_KEY)
+grok_client = OpenAI(
+    api_key=GROQ_API_KEY,
+    base_url="https://api.x.ai/v1",
+)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 
 def generate_daily_question():
     today_date = datetime.now().strftime("%Y-%m-%d")
@@ -41,8 +47,8 @@ def generate_daily_question():
     """
 
     try:
-        response = groq_client.chat.completions.create(
-            model="mixtral-8x7b-32768",
+        response = grok_client.chat.completions.create(
+           model="grok-beta",
             messages=[
                 {
                     "role": "system",
@@ -71,6 +77,7 @@ def generate_daily_question():
 
     except Exception as e:
         print(f"❌ حدث خطأ أثناء التوليد أو الحفظ: {e}")
+
 
 if __name__ == "__main__":
     generate_daily_question()
